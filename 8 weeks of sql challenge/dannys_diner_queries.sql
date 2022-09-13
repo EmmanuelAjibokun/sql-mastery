@@ -33,5 +33,15 @@ GROUP BY customer_id;
 
 SELECT * FROM all_tables;
 
+-- What was the first item from the menu purchased by each customer?
+
+SELECT 
+	customer_id,
+	Min(order_date) 
+FROM all_tables
+GROUP BY customer_id
+ORDER BY customer_id;
+
 -- 
+    
     

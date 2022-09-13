@@ -17,9 +17,21 @@ JOIN menu me
     
 -- What is the total amount each customer spent at the restaurant?
 
-SELECT SUM(price) AS total
+SELECT 
+	customer_id,
+	SUM(price) AS total
+FROM all_tables
+GROUP BY customer_id;
+
+-- How many days has each customer visited the restaurant?
+SELECT 
+	customer_id,
+	COUNT(DISTINCT order_date) AS days_visited
 FROM all_tables
 GROUP BY customer_id;
 
 
+SELECT * FROM all_tables;
+
+-- 
     

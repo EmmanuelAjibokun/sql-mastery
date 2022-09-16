@@ -37,7 +37,7 @@ SELECT * FROM all_tables;
 
 SELECT 
 	customer_id,
-	Min(order_date),
+	Min(order_date) AS order_date,
     product_name
 FROM all_tables
 GROUP BY customer_id
@@ -93,6 +93,18 @@ GROUP BY product_id
 ORDER BY total_product DESC
 LIMIT 1
 ) AS customer_B_popular_item;
+
+
+-- Which item was purchased first by the customer after they became a member?
+
+SELECT 
+	customer_id,
+	join_date,
+    product_name,
+    order_date
+FROM all_tables
+ORDER BY order_date
+LIMIT 2;
 
 
 SELECT * FROM all_tables;

@@ -52,6 +52,49 @@ FROM all_tables
 GROUP BY product_id
 ORDER BY total_sales DESC;
 
+-- Which item was the most popular for each customer?
+
+SELECT *
+FROM (SELECT 
+	customer_id,
+	product_name,
+	COUNT(product_id) AS total_product
+FROM all_tables
+WHERE customer_id = 'A'
+GROUP BY product_id
+UNION
+SELECT 
+	customer_id,
+	product_name,
+	COUNT(product_id) AS total_product
+FROM all_tables
+WHERE customer_id = 'B'
+GROUP BY product_id
+ORDER BY total_product DESC
+LIMIT 1
+) AS customer_A_popular_item
+UNION 
+SELECT * 
+FROM (SELECT 
+	customer_id,
+	product_name,
+	COUNT(product_id) AS total_product
+FROM all_tables
+WHERE customer_id = 'B'
+GROUP BY product_id
+UNION
+SELECT 
+	customer_id,
+	product_name,
+	COUNT(product_id) AS total_product
+FROM all_tables
+WHERE customer_id = 'B'
+GROUP BY product_id
+ORDER BY total_product DESC
+LIMIT 1
+) AS customer_B_popular_item;
+
+
 SELECT * FROM all_tables;
     
     

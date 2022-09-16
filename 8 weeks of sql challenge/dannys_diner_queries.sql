@@ -37,11 +37,21 @@ SELECT * FROM all_tables;
 
 SELECT 
 	customer_id,
-	Min(order_date) 
+	Min(order_date),
+    product_name
 FROM all_tables
 GROUP BY customer_id
 ORDER BY customer_id;
 
--- 
+-- What is the most purchased item on the menu and how many times was it purchased by all customers?
+
+SELECT 
+	COUNT(product_id) AS total_sales,
+    product_name
+FROM all_tables
+GROUP BY product_id
+ORDER BY total_sales DESC;
+
+SELECT * FROM all_tables;
     
     

@@ -37,7 +37,7 @@ SELECT * FROM all_tables;
 
 SELECT 
 	customer_id,
-	Min(order_date) AS order_date,
+	MIN(order_date) AS order_date,
     product_name
 FROM all_tables
 GROUP BY customer_id
@@ -99,13 +99,30 @@ LIMIT 1
 
 SELECT 
 	customer_id,
+    product_name,
+	MIN(order_date)
+FROM all_tables
+WHERE order_date >= join_date AND customer_id = 'A';
+
+(SELECT 
+	MIN(customer_id) AS customer_id,
 	join_date,
     product_name,
     order_date
 FROM all_tables
-ORDER BY order_date
-LIMIT 2;
+WHERE customer_id = 'A'
+-- ORDER BY join_date, order_date
+UNION
+SELECT 
+	customer_id,
+	join_date,
+    product_name,
+    MIN(order_date)
+FROM all_tables
+WHERE customer_id = 'B'
+ORDER BY join_date, order_date);
 
+-- What is the total items and amount spent for each member before they became a member?
 
 SELECT * FROM all_tables;
     

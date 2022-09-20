@@ -124,6 +124,25 @@ ORDER BY customer_id;
 
 -- If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 
+SELECT customer_id,
+	SUM(points) AS total_points
+FROM (
+	SELECT 
+		*,
+		price * 10 AS points
+	FROM all_tables
+	WHERE product_id != 1
+	UNION 
+	SELECT 
+		*,
+		price * 20 AS points
+	FROM all_tables
+	WHERE product_id = 1
+) AS points_generator
+GROUP BY customer_id
+ORDER BY customer_id;
+
+
 SELECT * FROM all_tables;
     
     

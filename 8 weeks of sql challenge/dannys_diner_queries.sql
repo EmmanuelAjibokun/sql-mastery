@@ -102,27 +102,25 @@ SELECT
     product_name,
 	MIN(order_date)
 FROM all_tables
-WHERE order_date >= join_date AND customer_id = 'A';
-
-(SELECT 
-	MIN(customer_id) AS customer_id,
-	join_date,
-    product_name,
-    order_date
-FROM all_tables
-WHERE customer_id = 'A'
--- ORDER BY join_date, order_date
+WHERE order_date >= join_date AND customer_id = 'A'
 UNION
 SELECT 
 	customer_id,
-	join_date,
     product_name,
-    MIN(order_date)
+	MIN(order_date)
 FROM all_tables
-WHERE customer_id = 'B'
-ORDER BY join_date, order_date);
+WHERE order_date >= join_date AND customer_id = 'B';
 
 -- What is the total items and amount spent for each member before they became a member?
+
+SELECT 
+	customer_id,
+    COUNT(product_id) AS total_item,
+    SUM(price) AS total_price
+FROM all_tables
+WHERE order_date < join_date
+GROUP BY customer_id
+ORDER BY customer_id;
 
 SELECT * FROM all_tables;
     

@@ -7,7 +7,8 @@ SELECT m.customer_id,
         s.product_id,
         product_name,
         price,
-        order_date
+        order_date,
+        s.order_id
 FROM members m
 JOIN sales s 
 	USING (customer_id)

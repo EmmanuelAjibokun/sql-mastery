@@ -122,6 +122,8 @@ WHERE order_date < join_date
 GROUP BY customer_id
 ORDER BY customer_id;
 
+-- If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
+
 SELECT * FROM all_tables;
     
     
